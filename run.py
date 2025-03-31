@@ -13,5 +13,5 @@ def run_dashwave():
         
         time.sleep(5)  # Wait before restarting
 
-if name == "main":
+if __name__ == "__main__":
     run_dashwave()

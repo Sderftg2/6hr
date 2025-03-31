@@ -1,21 +1,23 @@
 import subprocess
 import time
+import logging
 
-def run_dashwave():
+# Configure logging
+logging.basicConfig(filename="lightning.log", level=logging.INFO, format="%(asctime)s - %(message)s")
+
+def run_lightning():
+    """Runs the Lightning AI app continuously with auto-restart."""
     while True:
-        print("Starting Dashwave terminal...")
-        
         try:
-            # Open a persistent shell session to Dashwave
-            process = subprocess.Popen(["bash", "-c", "console.dashwave.com"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-
-            stdout, stderr = process.communicate()
-            print(f"Dashwave stopped. Restarting in 5 seconds...\nError: {stderr.decode('utf-8')}")
+            logging.info("Starting Lightning AI App...")
+            process = subprocess.Popen(["python", "my_lightning_app.py"])
+            process.wait()  # Wait for process to exit
 
         except Exception as e:
-            print(f"Unexpected error: {e}")
+            logging.error(f"Lightning AI App crashed: {e}")
 
-        time.sleep(5)  # Wait before restarting
+        logging.info("Restarting in 5 seconds...")
+        time.sleep(5)  # Delay before restarting
 
-if name == "main":
-    run_dashwave()
+if __name__ == "__main__":
+    run_lightning()

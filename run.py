@@ -4,7 +4,7 @@ import time
 def run_dashwave():
     while True:
         print("Starting Dashwave...")
-        process = subprocess.Popen(["dashwave", "run"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        process = subprocess.Popen(["/full/path/to/dashwave", "run"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         
         # Monitor the process
         stdout, stderr = process.communicate()

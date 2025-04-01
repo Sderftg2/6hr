@@ -1,23 +1,19 @@
-import subprocess
 import time
-import logging
 
-# Configure logging
-logging.basicConfig(filename="lightning.log", level=logging.INFO, format="%(asctime)s - %(message)s")
+start_time = time.time()
+run_duration = 6 * 3600  # 6 ghante seconds me
 
-def run_lightning():
-    """Runs the Lightning AI app continuously with auto-restart."""
+def main():
     while True:
-        try:
-            logging.info("Starting Lightning AI App...")
-            process = subprocess.Popen(["python", "my_lightning_app.py"])
-            process.wait()  # Wait for process to exit
+        elapsed_time = time.time() - start_time
+        if elapsed_time >= run_duration:
+            print("Script 6 ghante tak chal chuki hai. Exit ho raha hai.")
+            break  # 6 ghante ke baad exit
 
-        except Exception as e:
-            logging.error(f"Lightning AI App crashed: {e}")
+        hours = elapsed_time / 3600
+        print(f"Script {hours:.2f} ghante se chal rahi hai.")
 
-        logging.info("Restarting in 5 seconds...")
-        time.sleep(5)  # Delay before restarting
+        time.sleep(60)  # 60 second wait karega phir dubara chalega
 
-if __name__ == "__main__":
-    run_lightning()
+if __name__ == "__main__":  # Ye fix kiya gaya hai
+    main()
